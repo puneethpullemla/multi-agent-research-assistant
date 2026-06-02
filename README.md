@@ -8,9 +8,7 @@ The application uses multiple AI agents working together to perform web research
 
 https://multi-agent-research-assistant-lamg.onrender.com
 
-## 📂 GitHub Repository
 
-Add your GitHub repository link here.
 
 ---
 
