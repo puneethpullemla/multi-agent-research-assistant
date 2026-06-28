@@ -25,6 +25,9 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Set dummy environment variables
+        run: echo "GROQ_API_KEY=dummy" >> $GITHUB_ENV
+
       - name: Run tests
         run: |
           python -m pytest -v
