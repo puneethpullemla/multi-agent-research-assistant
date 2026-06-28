@@ -1,25 +1,27 @@
 # 🚀 Multi-Agent Research Assistant
 
-A powerful AI-powered research assistant built using LangGraph, Groq LLM, Tavily Search, Streamlit, and Docker.
+A production-ready AI-powered research assistant built using **LangGraph, LangChain, Groq LLM, Tavily Search, Streamlit, Docker, GitHub Actions, and Pytest**.
 
-The application uses multiple AI agents working together to perform web research, summarize findings, verify information, and generate professional reports.
+The application orchestrates multiple AI agents to perform web research, summarize findings, verify information, and generate structured research reports through an automated workflow.
+
+---
 
 ## 🌐 Live Demo
 
 https://multi-agent-research-assistant-lamg.onrender.com
-
-
 
 ---
 
 ## ✨ Features
 
 * 🔍 Real-time web research using Tavily Search
-* 🤖 Multi-agent workflow using LangGraph
-* 📝 AI-powered summarization
+* 🤖 Multi-agent workflow powered by LangGraph
+* 📝 AI-powered summarization using Groq LLM
 * ✅ Information verification agent
 * 📄 Professional report generation
-* 🎨 Interactive Streamlit UI
+* 🎨 Interactive Streamlit interface
+* 🧪 Unit testing with Pytest
+* ⚙️ Automated CI using GitHub Actions
 * 🐳 Dockerized application
 * ☁️ Cloud deployment on Render
 
@@ -64,6 +66,15 @@ Final Report
 
 * Streamlit
 
+### Testing
+
+* Pytest
+* unittest.mock
+
+### CI/CD
+
+* GitHub Actions
+
 ### Deployment
 
 * Docker
@@ -80,11 +91,9 @@ Final Report
 ```text
 multi-agent-research-assistant/
 │
-├── app.py
-├── main.py
-├── requirements.txt
-├── Dockerfile
-├── .dockerignore
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 │
 ├── agents/
 │   ├── researcher.py
@@ -100,13 +109,27 @@ multi-agent-research-assistant/
 │   └── llm.py
 │
 ├── prompts/
-│   ├── researcher_prompt.py
+│   ├── report_prompt.py
 │   ├── summarizer_prompt.py
-│   ├── verifier_prompt.py
-│   └── report_prompt.py
+│   └── verifier_prompt.py
 │
-└── tools/
-    └── web_search.py
+├── tests/
+│   ├── test_basic.py
+│   ├── test_researcher.py
+│   ├── test_summarizer.py
+│   ├── test_verifier.py
+│   ├── test_report_generator.py
+│   └── test_workflow.py
+│
+├── tools/
+│   └── web_search.py
+│
+├── app.py
+├── main.py
+├── requirements.txt
+├── Dockerfile
+├── .dockerignore
+└── README.md
 ```
 
 ---
@@ -128,7 +151,7 @@ python -m venv venv
 
 ### Activate Environment
 
-Windows:
+**Windows**
 
 ```bash
 venv\Scripts\activate
@@ -167,6 +190,44 @@ http://localhost:8501
 
 ---
 
+## 🧪 Run Tests
+
+Execute the complete test suite:
+
+```bash
+python -m pytest -v
+```
+
+Run with coverage:
+
+```bash
+python -m pytest --cov=. --cov-report=term-missing
+```
+
+The project includes unit tests for:
+
+* Graph workflow
+* Researcher Agent
+* Summarizer Agent
+* Verifier Agent
+* Report Generator Agent
+* End-to-end workflow
+
+External API calls are mocked to ensure fast and reliable testing.
+
+---
+
+## ⚙️ GitHub Actions CI
+
+Every push and pull request automatically:
+
+* Installs project dependencies
+* Runs all Pytest test cases
+* Builds the Docker image
+* Verifies the application is deployment-ready
+
+---
+
 ## 🐳 Docker Setup
 
 ### Build Image
@@ -178,7 +239,10 @@ docker build -t multi-agent-research .
 ### Run Container
 
 ```bash
-docker run -p 8501:8501 -e GROQ_API_KEY=YOUR_GROQ_KEY -e TAVILY_API_KEY=YOUR_TAVILY_KEY multi-agent-research
+docker run -p 8501:8501 \
+-e GROQ_API_KEY=YOUR_GROQ_KEY \
+-e TAVILY_API_KEY=YOUR_TAVILY_KEY \
+multi-agent-research
 ```
 
 ---
@@ -193,25 +257,13 @@ Deployment workflow:
 GitHub
    │
    ▼
-Render
+GitHub Actions
    │
+   ├── Run Pytest
+   ├── Build Docker Image
    ▼
-Docker Build
-   │
-   ▼
-Live Application
+Render Deployment
 ```
-
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-1. Home Page
-2. Research Query
-3. Generated Report
-4. Docker Deployment
 
 ---
 
@@ -229,7 +281,7 @@ Add screenshots of:
 
 ## 👨‍💻 Author
 
-Puneeth Kumar
+**Puneeth Kumar**
 
 Aspiring AI Engineer focused on:
 
@@ -242,4 +294,6 @@ Aspiring AI Engineer focused on:
 
 ---
 
-## ⭐ If you found this project useful, please give it a star!
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
