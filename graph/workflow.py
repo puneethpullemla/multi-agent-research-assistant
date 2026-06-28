@@ -25,3 +25,4 @@ def build_graph():
     workflow.add_edge("report_generator", END)
 
     return workflow.compile()
+
