@@ -26,8 +26,10 @@ jobs:
           pip install pytest
 
       - name: Set dummy environment variables
-        run: echo "GROQ_API_KEY=dummy" >> $GITHUB_ENV
-
+        run: |
+          echo "GROQ_API_KEY=dummy" >> $GITHUB_ENV
+          echo "TAVILY_API_KEY=dummy" >> $GITHUB_ENV
+          
       - name: Run tests
         run: |
           python -m pytest -v

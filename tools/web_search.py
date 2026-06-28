@@ -4,20 +4,22 @@ import os
 
 load_dotenv()
 
-client =TavilyClient(
-    api_key = os.getenv("TAVILY_API_KEY")
-)
 
-def search_web(query:str) -> str:
+def search_web(query: str) -> str:
+    client = TavilyClient(
+        api_key=os.getenv("TAVILY_API_KEY")
+    )
+
     results = client.search(
         query=query,
         max_results=5
     )
-    
-    output= ""
+
+    output = ""
+
     for r in results["results"]:
-        output += f"Title : {r['title']}\n"
+        output += f"Title: {r['title']}\n"
         output += f"URL: {r['url']}\n"
         output += f"Content: {r['content']}\n\n"
-        
+
     return output
