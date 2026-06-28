@@ -4,3 +4,4 @@ streamlit
 tavily-python
 python-dotenv
 langchain-groq
+pytest
